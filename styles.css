@@ -117,6 +117,37 @@ a {
 }
 
 /* =========================
+   Utilities / Primitives
+   ========================= */
+
+/* 1) Muted text (hierarchy) */
+.muted {
+  color: var(--color-muted);
+}
+
+/* 2) Kicker / label text (orientation) */
+.kicker {
+  margin: 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* 3) Stack (vertical rhythm) */
+.stack {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.stack--sm {
+  gap: var(--space-sm);
+}
+
+.stack--lg {
+  gap: var(--space-lg);
+}
+
+/* =========================
    Typography
    ========================= */
 
@@ -210,8 +241,8 @@ h3 {
 
 .brand__logo {
   display: block;
-  height: 32px;
-  max-height: 32px;
+  height: 28px;
+  max-height: 28px;
   width: auto;
 }
 
@@ -236,50 +267,55 @@ h3 {
    ========================= */
 
 .hero {
-  padding-top: 0;
+  /* Make the hero own the viewport */
+  min-height: calc(100vh - 72px); /* 72px ~= header height */
+  display: flex;
+  align-items: center;
+  padding: var(--space-xxl) 0;
 }
 
 .hero__grid {
+  width: 100%;
   display: grid;
-  grid-template-columns: 1.25fr 0.75fr;
-  gap: var(--space-lg);
-  align-items: start;
+  grid-template-columns: 1.25fr 0.85fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
 }
 
+/* Keep hero content feeling intentional (not tiny) */
 .hero__text {
-  max-width: 720px;
+  max-width: 52rem;
 }
 
 .hero__eyebrow {
   margin: 0 0 var(--space-sm);
   color: var(--color-grey);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   font-size: 0.85rem;
 }
 
 .hero__title {
-  font-size: clamp(2.3rem, 5vw, 3.2rem);
-  line-height: 1.05;
-  margin-bottom: var(--space-sm);
+  font-size: clamp(2.8rem, 5.2vw, 4.25rem);
+  line-height: 1.02;
+  margin: 0 0 var(--space-sm);
 }
 
 .hero__subtitle {
   color: var(--color-muted);
   margin: 0 0 var(--space-md);
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   max-width: 46rem;
 }
 
 .hero__bullets {
   margin: 0 0 var(--space-md);
   padding-left: 1.2rem;
-  color: var(--color-text);
 }
 
 .hero__bullets li {
-  margin-bottom: 0.45rem;
-  color: var(--color-muted);
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .hero__meta {
@@ -292,19 +328,33 @@ h3 {
 .hero__leaders,
 .hero__price {
   margin: 0.35rem 0;
-  color: var(--color-muted);
-}
-
-.hero__price-note {
-  color: rgba(255, 255, 255, 0.55);
-  margin-left: 0.35rem;
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .hero__actions {
   display: flex;
   gap: var(--space-sm);
   flex-wrap: wrap;
+  margin-top: var(--space-sm);
 }
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* a subtle vignette / glow */
+  background:
+    radial-gradient(700px 500px at 20% 30%, rgba(228, 29, 45, 0.10), transparent 60%),
+    radial-gradient(900px 650px at 70% 35%, rgba(255, 255, 255, 0.06), transparent 55%);
+  opacity: 1;
+}
+
+.section.hero {
+  position: relative;
+}
+
+
 
 /* =========================
    Components – Buttons
@@ -356,11 +406,11 @@ a.button {
    ========================= */
 
 .form-card {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.035);
   border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: var(--radius-lg);
-  padding: var(--space-lg);
-  box-shadow: var(--shadow-soft);
+  padding: clamp(1.25rem, 2vw, 1.75rem);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.65);
 }
 
 .form-card__title {
@@ -697,6 +747,7 @@ a.button {
   .site-header__inner {
     flex-wrap: wrap;
     justify-content: space-between;
+    padding: 0.6rem 0;
   }
 
   .site-nav {
