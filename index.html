@@ -1,131 +1,430 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alchemy & Iron</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alchemy &amp; Iron</title>
 
-  <!-- Adobe Fonts -->
-  <link rel="stylesheet" href="https://use.typekit.net/qxr4bkk.css">
+    <!-- Adobe Fonts -->
+    <link rel="stylesheet" href="https://use.typekit.net/qxr4bkk.css" />
 
-  <!-- Site styles -->
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <header class="site-header">
-    <div class="container">
-      <div class="site-header__inner">
-  <a class="brand" href="#top" aria-label="Alchemy &amp; Iron">
-    <img
-      class="brand__logo brand__logo--wide"
-      src="assets/images/AI-reverse-horizontal.png"
-      alt="Alchemy &amp; Iron"
-    />
-    <img
-      class="brand__logo brand__logo--stack"
-      src="assets/images/AI-reverse-seal.png"
-      alt=""
-      aria-hidden="true"
-    />
-  </a>
+    <!-- Site styles -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-  <nav class="site-nav" aria-label="Primary">
-    <a href="#program" class="site-nav__link">Program</a>
-    <a href="#cohort" class="site-nav__link">Cohort</a>
-    <a href="#apply" class="site-nav__link site-nav__link--button">Apply</a>
-  </nav>
-</div>
+  <body>
+    <!-- =========================
+         Header
+         ========================= -->
+    <header class="site-header">
+      <div class="container">
+        <div class="site-header__inner">
+          <a class="brand" href="#top" aria-label="Alchemy &amp; Iron">
+            <img
+              class="brand__logo brand__logo--wide"
+              src="assets/images/AI-reverse-horizontal.png"
+              alt="Alchemy &amp; Iron"
+            />
+            <img
+              class="brand__logo brand__logo--stack"
+              src="assets/images/AI-reverse-seal.png"
+              alt=""
+              aria-hidden="true"
+            />
+          </a>
 
-    </div>
-  </header>
-
-  <main>
-    <!-- HERO -->
-    <section class="section hero" id="top">
-      <div class="container hero__content">
-        <div class="hero__text">
-          <h1 class="hero__title">Alchemy &amp; Iron Cohort</h1>
-          <p class="hero__subtitle">
-            A focused, time-boxed program for founders who want clarity, momentum, and a serious, grown-up go-to-market foundation.
-          </p>
-          <a href="#apply" class="button button--primary">Apply to the first cohort</a>
+          <nav class="site-nav" aria-label="Primary">
+            <a href="#build" class="site-nav__link">Program</a>
+            <a href="#for" class="site-nav__link">Cohort</a>
+            <a href="#apply" class="site-nav__link site-nav__link--button">Apply</a>
+          </nav>
         </div>
       </div>
-    </section>
+    </header>
 
-    <!-- PROGRAM OVERVIEW -->
-    <section class="section" id="program">
-      <div class="container">
-        <h2 class="section-title">What you’ll get</h2>
-        <div class="grid grid--3">
-          <article class="card">
-            <h3 class="card__title">Clarity</h3>
-            <p class="card__body">
-              Align brand, product, and go-to-market so every touchpoint tells the same story.
-            </p>
-          </article>
-          <article class="card">
-            <h3 class="card__title">Execution</h3>
-            <p class="card__body">
-              Simple, repeatable systems for outreach, follow-up, and founder-assisted sales.
-            </p>
-          </article>
-          <article class="card">
-            <h3 class="card__title">Support</h3>
-            <p class="card__body">
-              Live sessions, office hours, and practical tools that fit startup reality.
-            </p>
-          </article>
+    <main id="top">
+      <!-- =========================
+           HERO (Split)
+           ========================= -->
+      <section class="section section--hero" aria-label="Hero">
+        <div class="container hero">
+          <div class="hero__grid">
+            <!-- =========================
+                 EDIT ZONE: HERO COPY
+                 ========================= -->
+            <div class="hero__text">
+              <p class="hero__eyebrow">A 12-week cohort for founders</p>
+
+              <h1 class="hero__title">
+                Brand clarity + GTM execution you can actually ship.
+              </h1>
+
+              <p class="hero__subtitle">
+                A focused, time-boxed program for founders who want clarity,
+                momentum, and a serious, grown-up go-to-market foundation.
+              </p>
+
+              <ul class="hero__bullets">
+                <li>Clarify your brand + positioning so every touchpoint aligns</li>
+                <li>Build an outreach + follow-up system that creates momentum</li>
+                <li>Leave with templates, playbooks, and a plan you can run</li>
+              </ul>
+
+              <div class="hero__meta">
+                <p class="hero__leaders">
+                  Led by <strong>David Spears</strong> (brand) and
+                  <strong>William Kasper</strong> (GTM).
+                </p>
+
+                <p class="hero__price">
+                  <strong>Founding Cohort Rate:</strong> $300
+                  <span class="hero__price-note"
+                    >(one-time first cohort price)</span
+                  >
+                </p>
+              </div>
+
+              <div class="hero__actions">
+                <a href="#apply" class="button button--primary"
+                  >Continue to application</a
+                >
+                <a href="#benefits" class="button button--ghost">Learn more</a>
+              </div>
+            </div>
+
+            <!-- =========================
+                 HERO MINI CAPTURE (Get updates)
+                 ========================= -->
+            <aside class="form-card" id="updates" aria-label="Get updates">
+              <h2 class="form-card__title">Get updates</h2>
+              <p class="form-card__subtitle">
+                Not ready to apply yet? Drop your email and we’ll send cohort
+                details and reminders.
+              </p>
+
+              <!-- Placeholder: wire this to your email platform later -->
+              <form class="mini-form">
+                <label class="mini-form__label">
+                  Email
+                  <input
+                    class="mini-form__input"
+                    type="email"
+                    name="email"
+                    placeholder="you@company.com"
+                    required
+                  />
+                </label>
+
+                <div class="mini-form__row">
+                  <label class="mini-form__label">
+                    First name (optional)
+                    <input
+                      class="mini-form__input"
+                      type="text"
+                      name="first_name"
+                      placeholder="First name"
+                    />
+                  </label>
+                  <label class="mini-form__label">
+                    Last name (optional)
+                    <input
+                      class="mini-form__input"
+                      type="text"
+                      name="last_name"
+                      placeholder="Last name"
+                    />
+                  </label>
+                </div>
+
+                <button class="button button--primary mini-form__button" type="submit">
+                  Get updates
+                </button>
+
+                <p class="mini-form__fineprint">
+                  No spam. Just cohort logistics and useful resources.
+                </p>
+              </form>
+            </aside>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- COHORT SECTION -->
-    <section class="section" id="cohort">
-      <div class="container">
-        <h2 class="section-title">Who this is for</h2>
-        <p class="section-intro">
-          Early-stage founders who have real traction, big ambition, and limited bandwidth — and who want a trusted framework, not more noise.
-        </p>
-      </div>
-    </section>
-
-    <!-- APPLY / FORM SECTION -->
-    <section class="section section--accent" id="apply">
-      <div class="container">
-        <h2 class="section-title">Apply to the first cohort</h2>
-        <p class="section-intro">
-          This first cohort is a one-time, discounted group. Tell us a bit about where you are and what you’re building.
-        </p>
-
-        <!-- TEMPORARY PLACEHOLDER: replace with embedded Dubsado form later -->
-        <form class="apply-form">
-          <div class="form-row">
-            <label>
-              Name
-              <input type="text" name="name" />
-            </label>
-            <label>
-              Email
-              <input type="email" name="email" />
-            </label>
+      <!-- =========================
+           BENEFITS (Checklist)
+           ========================= -->
+      <section class="section section--tight" id="benefits">
+        <div class="container">
+          <div class="section__header">
+            <!-- EDIT ZONE: BENEFITS -->
+            <h2 class="section-title">If you’re here, you probably want…</h2>
+            <p class="section-intro">
+              More traction, less noise. A path that makes your next 90 days feel
+              intentional and real.
+            </p>
           </div>
 
-          <label class="form-full">
-            What are you working on?
-            <textarea name="project" rows="4"></textarea>
-          </label>
+          <ul class="checklist">
+            <li>Confidence that your positioning makes sense to the market</li>
+            <li>A credible narrative you can repeat consistently</li>
+            <li>A GTM plan that matches your bandwidth and constraints</li>
+            <li>A repeatable outreach + follow-up rhythm</li>
+            <li>Practical templates you can adapt fast</li>
+          </ul>
+        </div>
+      </section>
 
-          <button type="submit" class="button button--primary">Submit (placeholder)</button>
-        </form>
+      <!-- =========================
+           BUILD (Cards 6)
+           ========================= -->
+      <section class="section" id="build">
+        <div class="container">
+          <div class="section__header">
+            <!-- EDIT ZONE: BUILD -->
+            <h2 class="section-title">What you’ll build over 12 weeks</h2>
+            <p class="section-intro">
+              A cohesive foundation you can actually execute — not a deck that
+              dies in a folder.
+            </p>
+          </div>
+
+          <div class="cards cards--3">
+            <!-- EDIT ZONE: BUILD CARDS -->
+            <article class="card card--outline">
+              <h3 class="card__title">Brand platform</h3>
+              <p class="card__body">
+                The core story: who you are, who you serve, and why you win.
+              </p>
+            </article>
+
+            <article class="card card--outline">
+              <h3 class="card__title">Positioning + messaging</h3>
+              <p class="card__body">
+                Clear language you can use across outreach, site, and sales.
+              </p>
+            </article>
+
+            <article class="card card--outline">
+              <h3 class="card__title">GTM strategy</h3>
+              <p class="card__body">
+                Your target wedge, channels, and priorities for traction.
+              </p>
+            </article>
+
+            <article class="card card--outline">
+              <h3 class="card__title">Sales system</h3>
+              <p class="card__body">
+                A simple funnel + follow-up cadence that doesn’t collapse.
+              </p>
+            </article>
+
+            <article class="card card--outline">
+              <h3 class="card__title">Templates + tools</h3>
+              <p class="card__body">
+                Outreach, follow-up, discovery, proposals — ready to adapt.
+              </p>
+            </article>
+
+            <article class="card card--outline">
+              <h3 class="card__title">Founder confidence</h3>
+              <p class="card__body">
+                Clear priorities, reduced doubt, and momentum you can sustain.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+           HOW IT WORKS (Icon Row)
+           ========================= -->
+      <section class="section section--panel" id="how">
+        <div class="container">
+          <div class="section__header center">
+            <!-- EDIT ZONE: HOW -->
+            <h2 class="section-title">How the program works</h2>
+            <p class="section-intro">
+              A weekly rhythm designed for real founder schedules.
+            </p>
+          </div>
+
+          <div class="icon-row">
+            <!-- EDIT ZONE: HOW ITEMS -->
+            <article class="icon-item">
+              <div class="icon-item__icon" aria-hidden="true">✓</div>
+              <h3 class="icon-item__title">Weekly live session</h3>
+              <p class="icon-item__body">90 minutes of guided work + decisions.</p>
+            </article>
+
+            <article class="icon-item">
+              <div class="icon-item__icon" aria-hidden="true">✓</div>
+              <h3 class="icon-item__title">Build sprints</h3>
+              <p class="icon-item__body">1–2 hours of weekly implementation.</p>
+            </article>
+
+            <article class="icon-item">
+              <div class="icon-item__icon" aria-hidden="true">✓</div>
+              <h3 class="icon-item__title">Office hours</h3>
+              <p class="icon-item__body">Get unstuck fast with live support.</p>
+            </article>
+
+            <article class="icon-item">
+              <div class="icon-item__icon" aria-hidden="true">✓</div>
+              <h3 class="icon-item__title">Pods</h3>
+              <p class="icon-item__body">Small peer groups for accountability.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+           WHO IT'S FOR (Checklist)
+           ========================= -->
+      <section class="section section--tight" id="for">
+        <div class="container">
+          <div class="section__header">
+            <!-- EDIT ZONE: WHO FOR -->
+            <h2 class="section-title">Who this is for</h2>
+            <p class="section-intro">
+              This program is a strong fit if you’re building something real —
+              and you want structure without fluff.
+            </p>
+          </div>
+
+          <ul class="checklist">
+            <li>You have traction (or credible signal) and want to scale it</li>
+            <li>You’re tired of inconsistent messaging across touchpoints</li>
+            <li>You want a GTM plan that matches your constraints</li>
+            <li>You’re ready to do focused work and make decisions weekly</li>
+            <li>You want templates and systems you can run immediately</li>
+          </ul>
+
+          <p class="callout">
+            <em
+              >No prior brand strategy experience required — we’ll keep it
+              practical and founder-friendly.</em
+            >
+          </p>
+        </div>
+      </section>
+
+      <!-- =========================
+           CTA BAND
+           ========================= -->
+      <section class="section section--cta" aria-label="Call to action">
+        <div class="container">
+          <div class="cta-band">
+            <!-- EDIT ZONE: CTA BAND -->
+            <h2 class="cta-band__title">Ready to apply?</h2>
+            <p class="cta-band__body">
+              If you want clarity and momentum in the next 12 weeks, we’d love to
+              review your application.
+            </p>
+            <a href="#apply" class="button button--primary">Go to application</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+           FULL APPLICATION (Embed)
+           ========================= -->
+      <section class="section" id="apply">
+        <div class="container">
+          <div class="section__header center">
+            <!-- EDIT ZONE: APPLY -->
+            <h2 class="section-title">Application</h2>
+            <p class="section-intro">
+              Embed the full application form here. (Dubsado or your preferred tool.)
+            </p>
+          </div>
+
+          <!-- =============================================
+               PLACEHOLDER: Replace this entire block with your embed
+               ============================================= -->
+          <div class="embed-frame">
+            <p class="embed-frame__text">
+              <strong>Form embed placeholder.</strong><br />
+              When ready, paste your Dubsado embed code here.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+           FAQ (Accordion)
+           ========================= -->
+      <section class="section section--tight" id="faq">
+        <div class="container">
+          <div class="section__header center">
+            <!-- EDIT ZONE: FAQ -->
+            <h2 class="section-title">Frequently asked questions</h2>
+            <p class="section-intro">
+              Quick answers. If you still have questions, we’ll help.
+            </p>
+          </div>
+
+          <div class="accordion">
+            <!-- EDIT ZONE: FAQ ITEMS -->
+            <details class="accordion__item">
+              <summary class="accordion__summary">
+                What stage do I need to be at to join?
+              </summary>
+              <div class="accordion__content">
+                <p>
+                  Early-stage is fine. The key is that you’re actively building
+                  and ready to make decisions week to week.
+                </p>
+              </div>
+            </details>
+
+            <details class="accordion__item">
+              <summary class="accordion__summary">
+                What if I miss a live session?
+              </summary>
+              <div class="accordion__content">
+                <p>
+                  You’ll still get the templates and weekly build prompts, and we
+                  can help you catch up in office hours.
+                </p>
+              </div>
+            </details>
+
+            <details class="accordion__item">
+              <summary class="accordion__summary">
+                Is this a course or more hands-on?
+              </summary>
+              <div class="accordion__content">
+                <p>
+                  Hands-on. The goal is to ship real assets and an operating
+                  rhythm you can keep using.
+                </p>
+              </div>
+            </details>
+
+            <details class="accordion__item">
+              <summary class="accordion__summary">
+                How much time should I budget per week?
+              </summary>
+              <div class="accordion__content">
+                <p>
+                  Typically 2–4 hours total: the live session plus a short weekly
+                  build sprint.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- =========================
+         Footer
+         ========================= -->
+    <footer class="site-footer">
+      <div class="container">
+        <p class="site-footer__text">
+          © Alchemy &amp; Iron · All rights reserved.
+        </p>
       </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <p class="site-footer__text">© Alchemy &amp; Iron · All rights reserved.</p>
-    </div>
-  </footer>
-</body>
+    </footer>
+  </body>
 </html>
