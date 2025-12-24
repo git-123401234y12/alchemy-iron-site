@@ -36,7 +36,7 @@ jobs:
           echo "User set?      $([ -n "${{ secrets.SFTP_USER }}" ] && echo yes || echo no)"
           echo "Key set?       $([ -n "${{ secrets.SFTP_SSH_KEY }}" ] && echo yes || echo no)"
           echo "Passphrase set?$([ -n "${{ secrets.SFTP_SSH_KEY_PASSPHRASE }}" ] && echo yes || echo no)"
-          
+
       - name: Deploy site files (SCP)
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -46,32 +46,30 @@ jobs:
           key: ${{ secrets.SFTP_SSH_KEY }}
           passphrase: ${{ secrets.SFTP_SSH_KEY_PASSPHRASE }}
           source: "deploy-marker.txt,index.html,styles.css,assets/**"
-          target: "alchemyandiron.com/public_html/"
+          target: "public_html/"
           overwrite: true
-          rm: true
 
-        - name: Verify marker on server (SSH)
-          uses: appleboy/ssh-action@v1.0.3
-          with:
-            host: ${{ secrets.SFTP_HOST }}
-            username: ${{ secrets.SFTP_USER }}
-            port: ${{ secrets.SFTP_PORT }}
-            key: ${{ secrets.SFTP_SSH_KEY }}
-            passphrase: ${{ secrets.SFTP_SSH_KEY_PASSPHRASE }}
-            script: |
-              echo "=== whoami / pwd ==="
-              whoami
-              pwd
-  
-              echo "=== list home ==="
-              ls -la
-  
-              echo "=== list public_html ==="
-              ls -la public_html || true
-  
-              echo "=== cat expected file ==="
-              cat public_html/deploy-marker.txt || true
-  
-              echo "=== search for ANY deploy-marker.txt ==="
-              find . -maxdepth 4 -name "deploy-marker.txt" -print -exec echo "---" \; -exec cat {} \; || true
+      - name: Verify marker on server (SSH)
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USER }}
+          port: ${{ secrets.SFTP_PORT }}
+          key: ${{ secrets.SFTP_SSH_KEY }}
+          passphrase: ${{ secrets.SFTP_SSH_KEY_PASSPHRASE }}
+          script: |
+            echo "=== whoami / pwd ==="
+            whoami
+            pwd
 
+            echo "=== list home ==="
+            ls -la
+
+            echo "=== list public_html ==="
+            ls -la public_html || true
+
+            echo "=== cat expected file ==="
+            cat public_html/deploy-marker.txt || true
+
+            echo "=== search for ANY deploy-marker.txt ==="
+            find . -maxdepth 4 -name "deploy-marker.txt" -print -exec echo "---" \; -exec cat {} \; || true
