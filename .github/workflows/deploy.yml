@@ -34,8 +34,8 @@ jobs:
           echo "User set?      $([ -n "${{ secrets.SFTP_USER }}" ] && echo yes || echo no)"
           echo "Key set?       $([ -n "${{ secrets.SFTP_SSH_KEY }}" ] && echo yes || echo no)"
           echo "Passphrase set?$([ -n "${{ secrets.SFTP_SSH_KEY_PASSPHRASE }}" ] && echo yes || echo no)"
-
-      - name: Deploy marker only (debug)
+          
+      - name: Deploy site files (SCP)
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SFTP_HOST }}
@@ -43,19 +43,8 @@ jobs:
           port: ${{ secrets.SFTP_PORT }}
           key: ${{ secrets.SFTP_SSH_KEY }}
           passphrase: ${{ secrets.SFTP_SSH_KEY_PASSPHRASE }}
-          source: "deploy-marker.txt"
-          target: "/home/customer/www/alchemyandiron.com/public_html/"
+          source: "deploy-marker.txt,index.html,styles.css,assets/**"
+          target: "public_html/"
           overwrite: true
 
-#      - name: Deploy via SCP over SSH (SiteGround)
-#        uses: appleboy/scp-action@v0.1.7
-#        with:
-#          host: ${{ secrets.SFTP_HOST }}
-#          username: ${{ secrets.SFTP_USER }}
-#          port: ${{ secrets.SFTP_PORT }}
-#          key: ${{ secrets.SFTP_SSH_KEY }}
-#          passphrase: ${{ secrets.SFTP_SSH_KEY_PASSPHRASE }}
-#          source: "deploy-marker.txt,*.html,*.css,*.js,assets/**"
-#          target: "public_html/"
-#          overwrite: true
 
