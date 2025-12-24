@@ -19,6 +19,12 @@ jobs:
           echo "commit=${GITHUB_SHA}" > deploy-marker.txt
           echo "deployed_utc=$(date -u)" >> deploy-marker.txt
 
+      - name: Verify marker exists (runner)
+        run: |
+          ls -la
+          echo "---- deploy-marker.txt ----"
+          cat deploy-marker.txt
+
       - name: Preflight (secrets present)
         shell: bash
         run: |
