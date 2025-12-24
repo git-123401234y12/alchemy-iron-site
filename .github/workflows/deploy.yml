@@ -46,7 +46,7 @@ jobs:
           key: ${{ secrets.SFTP_SSH_KEY }}
           passphrase: ${{ secrets.SFTP_SSH_KEY_PASSPHRASE }}
           source: "deploy-marker.txt,index.html,styles.css,assets/**"
-          target: "public_html/"
+          target: "alchemyandiron.com/public_html/"
           overwrite: true
 
 
