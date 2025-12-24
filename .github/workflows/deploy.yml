@@ -48,5 +48,4 @@ jobs:
           source: "deploy-marker.txt,index.html,styles.css,assets/**"
           target: "alchemyandiron.com/public_html/"
           overwrite: true
-
-
+          rm: true
