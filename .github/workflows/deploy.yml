@@ -1,12 +1,46 @@
-- name: Deploy via SFTP (SSH key)
-  uses: wlixcc/SFTP-Deploy-Action@v1.2.6
-  with:
-    username: ${{ secrets.SFTP_USER }}
-    server: ${{ secrets.SFTP_HOST }}
-    port: ${{ secrets.SFTP_PORT }}
-    ssh_private_key: ${{ secrets.SFTP_SSH_KEY }}
-    ssh_private_key_passphrase: ${{ secrets.SFTP_SSH_KEY_PASSPHRASE }}
-    local_path: .
-    remote_path: /public_html/
-    sftp_only: true
-    delete_remote_files: false
+name: Deploy to SiteGround (SFTP)
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Creates a proof file so you can verify deploy from the browser
+      - name: Write deploy marker
+        run: |
+          echo "commit=${GITHUB_SHA}" > .deploy-marker.txt
+          echo "deployed_utc=$(date -u)" >> .deploy-marker.txt
+
+      # Preflight: confirm secrets are present (does NOT reveal values)
+      - name: Preflight (secrets present)
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "Host set?      $([ -n "${{ secrets.SFTP_HOST }}" ] && echo yes || echo no)"
+          echo "Port set?      $([ -n "${{ secrets.SFTP_PORT }}" ] && echo yes || echo no)"
+          echo "User set?      $([ -n "${{ secrets.SFTP_USER }}" ] && echo yes || echo no)"
+          echo "Key set?       $([ -n "${{ secrets.SFTP_SSH_KEY }}" ] && echo yes || echo no)"
+          echo "Passphrase set?$([ -n "${{ secrets.SFTP_SSH_KEY_PASSPHRASE }}" ] && echo yes || echo no)"
+
+      - name: Deploy via SFTP (SSH key)
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
+        with:
+          server: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USER }}
+          port: ${{ secrets.SFTP_PORT }}
+          ssh_private_key: ${{ secrets.SFTP_SSH_KEY }}
+          ssh_private_key_passphrase: ${{ secrets.SFTP_SSH_KEY_PASSPHRASE }}
+          local_path: .
+          remote_path: /public_html/
+          sftp_only: true
+          delete_remote_files: false
