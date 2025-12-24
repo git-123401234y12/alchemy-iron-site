@@ -37,6 +37,7 @@ jobs:
           port: ${{ secrets.SFTP_PORT }}
           key: ${{ secrets.SFTP_SSH_KEY }}
           passphrase: ${{ secrets.SFTP_SSH_KEY_PASSPHRASE }}
-          source: "./*"
+          source: "*,**/*"
           target: "public_html/"
           overwrite: true
+          exclude: ".git/**,.github/**,README.md,deployment.md"
