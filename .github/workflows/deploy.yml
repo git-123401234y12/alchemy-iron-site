@@ -1,0 +1,75 @@
+name: Deploy to SiteGround (SFTP)
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Write deploy marker
+        run: |
+          echo "commit=${GITHUB_SHA}" > deploy-marker.txt
+          echo "run_id=${GITHUB_RUN_ID}" >> deploy-marker.txt
+          echo "run_number=${GITHUB_RUN_NUMBER}" >> deploy-marker.txt
+          echo "deployed_utc=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> deploy-marker.txt
+
+      - name: Verify marker exists (runner)
+        run: |
+          ls -la
+          echo "---- deploy-marker.txt ----"
+          cat deploy-marker.txt
+
+      - name: Preflight (secrets present)
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "Host set?      $([ -n "${{ secrets.SFTP_HOST }}" ] && echo yes || echo no)"
+          echo "Port set?      $([ -n "${{ secrets.SFTP_PORT }}" ] && echo yes || echo no)"
+          echo "User set?      $([ -n "${{ secrets.SFTP_USER }}" ] && echo yes || echo no)"
+          echo "Key set?       $([ -n "${{ secrets.SFTP_SSH_KEY }}" ] && echo yes || echo no)"
+          echo "Passphrase set?$([ -n "${{ secrets.SFTP_SSH_KEY_PASSPHRASE }}" ] && echo yes || echo no)"
+
+      - name: Deploy site files (SCP)
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USER }}
+          port: ${{ secrets.SFTP_PORT }}
+          key: ${{ secrets.SFTP_SSH_KEY }}
+          passphrase: ${{ secrets.SFTP_SSH_KEY_PASSPHRASE }}
+          source: "deploy-marker.txt,index.html,styles.css,assets/**"
+          target: "www/alchemyandiron.com/public_html/"
+          overwrite: true
+
+      - name: Verify marker on server (SSH)
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USER }}
+          port: ${{ secrets.SFTP_PORT }}
+          key: ${{ secrets.SFTP_SSH_KEY }}
+          passphrase: ${{ secrets.SFTP_SSH_KEY_PASSPHRASE }}
+          script: |
+            echo "=== whoami / pwd ==="
+            whoami
+            pwd
+
+            echo "=== list home ==="
+            ls -la
+
+            echo "=== list public_html ==="
+            ls -la public_html || true
+
+            echo "=== cat expected file ==="
+            cat public_html/deploy-marker.txt || true
+
+            echo "=== search for ANY deploy-marker.txt ==="
+            find . -maxdepth 4 -name "deploy-marker.txt" -print -exec echo "---" \; -exec cat {} \; || true
