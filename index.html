@@ -340,11 +340,16 @@
                PLACEHOLDER: Replace this entire block with your embed
                ============================================= -->
           <div class="embed-frame">
-            <p class="embed-frame__text">
-              <strong>Form embed placeholder.</strong><br />
-              When ready, paste your Dubsado embed code here.
-            </p>
+            <iframe
+              id="dubsado-application"
+              src="https://hello.dubsado.com/public/form/view/6920985fceb6974d2d3ea908?iframe=true"
+              frameborder="0"
+              width="100%"
+              loading="lazy"
+              title="Alchemy & Iron — Founding Cohort Application"
+            ></iframe>
           </div>
+
         </div>
       </section>
 
@@ -425,5 +430,13 @@
         </p>
       </div>
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.14/iframeResizer.min.js"></script>
+    <script>
+      iFrameResize(
+        { checkOrigin: false },
+        '#dubsado-application'
+      );
+    </script>
+
   </body>
 </html>
