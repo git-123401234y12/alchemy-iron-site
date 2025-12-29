@@ -220,6 +220,9 @@ h3 {
 }
 
 .site-nav__link {
+  font-family: var(--font-heading); /* degular-display */
+  font-weight: 400;
+  font-style: normal;
   font-size: 0.95rem;
   text-decoration: none;
   color: var(--color-muted);
@@ -237,6 +240,8 @@ h3 {
 .site-nav__link--button {
   background: var(--color-accent-soft);
   color: var(--color-accent);
+  font-family: var(--font-heading);
+  font-weight: 400;
 }
 
 /* =========================
@@ -375,6 +380,8 @@ h3 {
    ========================= */
 
 .button {
+  font-family: var(--font-heading);
+  font-weight: 400;
   display: inline-flex;
   align-items: center;
   justify-content: center;
