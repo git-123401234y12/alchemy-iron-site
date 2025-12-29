@@ -241,8 +241,8 @@ h3 {
 
 .brand__logo {
   display: block;
-  height: 36px;
-  max-height: 36px;
+  height: 40px;
+  max-height: 40px;
   width: auto;
 }
 
@@ -257,8 +257,8 @@ h3 {
 
   .brand__logo--stack {
     display: block;
-    height: 36px;
-    max-height: 36px;
+    height: 40px;
+    max-height: 40px;
   }
 }
 
