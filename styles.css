@@ -45,29 +45,29 @@
   box-sizing: border-box;
 }
 
-html,
-body {
+/* =========================
+   Base Typography / Page Reset
+   ========================= */
+
+html {
   margin: 0;
   padding: 0;
 }
 
-/* body {
-  font-family: var(--font-body);
-  background: var(--color-bg);
-  color: var(--color-text);
-  line-height: 1.6;
-} */
-
 body {
+  margin: 0;
+  padding: 0;
+
   font-family: var(--font-body);
   background: var(--color-bg);
   color: var(--color-text);
-  font-size: 17px;
-  line-height: 1.6;
+
+  font-size: 18px;
+  line-height: 1.65;
+
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
-
 
 img {
   max-width: 100%;
@@ -286,9 +286,16 @@ h3 {
   /* Make the hero own the viewport */
   position: relative;
   min-height: calc(100vh - 72px); /* 72px ~= header height */
+
+  /* IMPORTANT:
+     The section already provides top/bottom padding.
+     So the hero container should NOT add a second large padding layer. */
+  padding: 0;
+
+  /* Prevent vertical centering "dead zone" and allow meta below grid */
   display: flex;
-  align-items: center;
-  padding: var(--space-xxl) 0;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .hero__grid {
@@ -296,7 +303,9 @@ h3 {
   display: grid;
   grid-template-columns: 1.25fr 0.85fr;
   gap: clamp(1.5rem, 4vw, 3rem);
-  align-items: center;
+
+  /* Align content to the top for better above-the-fold hierarchy */
+  align-items: start;
 }
 
 /* Keep hero content feeling intentional (not tiny) */
@@ -318,6 +327,10 @@ h3 {
   margin: 0 0 var(--space-sm);
 }
 
+.hero__highlight {
+  color: var(--color-accent);
+}
+
 .hero__subtitle {
   color: rgba(255, 255, 255, 0.82);
   margin: 0 0 var(--space-md);
@@ -326,9 +339,9 @@ h3 {
   max-width: 46rem;
 }
 
-
+/* Left column should "end" at bullets */
 .hero__bullets {
-  margin: 0 0 var(--space-md);
+  margin: var(--space-md) 0 0;
   padding-left: 1.2rem;
 }
 
@@ -337,24 +350,25 @@ h3 {
   color: var(--color-muted);
 }
 
-.hero__meta {
-  margin: 0 0 var(--space-md);
-  padding: var(--space-sm) 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+/* Hero meta: continuation below the split grid
+   - Separator spans both columns (full width)
+   - Text remains single-column (inner max-width) */
+.hero-meta {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border);
 }
 
-.hero__leaders,
-.hero__price {
-  margin: 0.35rem 0;
-  color: rgba(255, 255, 255, 0.72);
+.hero-meta__inner {
+  max-width: 56ch;
 }
 
-.hero__actions {
-  display: flex;
-  gap: var(--space-sm);
-  flex-wrap: wrap;
-  margin-top: var(--space-sm);
+.hero-meta__line {
+  margin: 0;
+}
+
+.hero-meta__price-note {
+  margin-left: 0.35rem;
 }
 
 .hero::before {
@@ -362,18 +376,11 @@ h3 {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  /* a subtle vignette / glow */
   background:
     radial-gradient(700px 500px at 20% 30%, rgba(228, 29, 45, 0.10), transparent 60%),
     radial-gradient(900px 650px at 70% 35%, rgba(255, 255, 255, 0.06), transparent 55%);
   opacity: 1;
 }
-
-/* .section.hero {
-  position: relative;
-}
- */
-
 
 /* =========================
    Components – Buttons
@@ -402,8 +409,14 @@ a.button {
 
 .button--primary {
   background: var(--color-accent);
-  color: #1a1208;
+  color: var(--color-text);
   box-shadow: 0 12px 28px rgba(228, 29, 45, 0.35);
+}
+
+.button--primary {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
 }
 
 .button--primary:hover {
@@ -568,6 +581,7 @@ a.button {
   display: grid;
   gap: var(--space-md);
 }
+
 .grid--3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
