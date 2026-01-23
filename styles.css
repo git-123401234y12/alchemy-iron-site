@@ -283,16 +283,12 @@ h3 {
    ========================= */
 
 .hero {
-  /* Make the hero own the viewport */
   position: relative;
-  min-height: calc(100vh - 72px); /* 72px ~= header height */
 
-  /* IMPORTANT:
-     The section already provides top/bottom padding.
-     So the hero container should NOT add a second large padding layer. */
+  /* Hero includes meta below the grid, so do not force viewport height */
+  min-height: 0;
+
   padding: 0;
-
-  /* Prevent vertical centering "dead zone" and allow meta below grid */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -303,14 +299,11 @@ h3 {
   display: grid;
   grid-template-columns: 1.25fr 0.85fr;
   gap: clamp(1.5rem, 4vw, 3rem);
-
-  /* Align content to the top for better above-the-fold hierarchy */
   align-items: start;
 }
 
-/* Keep hero content feeling intentional (not tiny) */
 .hero__text {
-  max-width: 52rem;
+  max-width: 62rem; /* slightly more generous measure */
 }
 
 .hero__eyebrow {
@@ -339,36 +332,16 @@ h3 {
   max-width: 46rem;
 }
 
-/* Left column should "end" at bullets */
+/* Bullets: subtle editorial inset */
 .hero__bullets {
   margin: var(--space-md) 0 0;
-  padding-left: 1.2rem;
+  padding-left: 1.75rem;
+  max-width: 52ch;
 }
 
 .hero__bullets li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.65rem;
   color: var(--color-muted);
-}
-
-/* Hero meta: continuation below the split grid
-   - Separator spans both columns (full width)
-   - Text remains single-column (inner max-width) */
-.hero-meta {
-  margin-top: var(--space-lg);
-  padding-top: var(--space-md);
-  border-top: 1px solid var(--color-border);
-}
-
-.hero-meta__inner {
-  max-width: 56ch;
-}
-
-.hero-meta__line {
-  margin: 0;
-}
-
-.hero-meta__price-note {
-  margin-left: 0.35rem;
 }
 
 .hero::before {
@@ -383,12 +356,68 @@ h3 {
 }
 
 /* =========================
+   Hero Meta (Balanced layout)
+   ========================= */
+
+.hero-meta {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.hero-meta__inner {
+  max-width: 100%;
+}
+
+.hero-meta__grid {
+  display: grid;
+  grid-template-columns: 1.35fr 0.85fr;
+  gap: clamp(1.25rem, 4vw, 3rem);
+  align-items: start;
+}
+
+/* Narrative column: longer lines, still readable */
+.hero-meta__col--primary {
+  max-width: 80ch;
+}
+
+/* Summary column: gentle separation */
+.hero-meta__col--secondary {
+  padding-left: var(--space-md);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hero-meta__line {
+  margin: 0;
+}
+
+.hero-meta__group {
+  display: grid;
+  gap: var(--space-xs);
+  margin-top: var(--space-md);
+}
+
+.hero-meta__price-block {
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hero-meta__price {
+  display: inline-block;
+  font-size: 1.05rem;
+}
+
+.hero-meta__price-note {
+  margin-left: 0.35rem;
+}
+
+/* =========================
    Components – Buttons
    ========================= */
 
 .button {
   font-family: var(--font-heading);
-  font-weight: 400;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -411,12 +440,9 @@ a.button {
   background: var(--color-accent);
   color: var(--color-text);
   box-shadow: 0 12px 28px rgba(228, 29, 45, 0.35);
-}
 
-.button--primary {
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  font-weight: 500;
 }
 
 .button--primary:hover {
@@ -520,7 +546,6 @@ a.button {
   font-size: 0.9rem; /* still secondary, no longer tiny */
   color: rgba(255, 255, 255, 0.6);
 }
-
 
 /* =========================
    Components – Checklist
@@ -684,18 +709,17 @@ a.button {
 
 .embed-frame {
   border-radius: var(--radius-lg);
-  border: 1px dashed rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   background: rgba(255, 255, 255, 0.03);
-  padding: var(--space-lg);
-  min-height: 220px;
-  display: grid;
-  place-items: center;
+  overflow: hidden;
 }
 
-.embed-frame__text {
-  margin: 0;
-  color: var(--color-muted);
-  text-align: center;
+/* Let the iframe own the space */
+.embed-frame__iframe {
+  display: block;
+  width: 100%;
+  min-height: 900px;
+  border: 0;
 }
 
 /* =========================
@@ -769,6 +793,20 @@ a.button {
 @media (max-width: 980px) {
   .hero__grid {
     grid-template-columns: 1fr;
+  }
+
+  .hero-meta__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-meta__col--secondary {
+    padding-left: 0;
+    border-left: 0;
+    margin-top: var(--space-lg);
+  }
+
+  .hero-meta__col--primary {
+    max-width: 100%;
   }
 
   .form-card {
